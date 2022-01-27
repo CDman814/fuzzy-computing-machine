@@ -7,27 +7,35 @@ $(document).ready(function () {
   // alert("page is ready");
   console.log("doc is ready");
   
- 
-    let $start_counter = $( "#event-start" ),
-      $drag_counter = $( "#event-drag" ),
-      $stop_counter = $( "#event-stop" ),
-      counts = [0, 0, 0],
-      updateCounterStatus = 0
-      ;
+  let wowCount=0;
+  let wowMsg;
   
   //  { containment: "#dogeHouse", scroll: false }, { 
    
     $("#dogePic").draggable(
-      {
+      { 
+      containment: "#dogeHouse",
+      scroll: false,
+      
       start: function () {
-        // counts[0]++;
-        // //updateCounterStatus($start_counter, counts[0]);
-        // console.log(counts[0]);
-        // if (counts[2]>=10) {
-        //   alert("wow 10");
+        wowCount++;
+        console.log("starting", "Here is wowCount: ", wowCount);
+
+        if(wowCount<=4) {
+          wowMsg = "your wow is weak";
+        }
+        else if(4<wowCount<8) {
+          wowMsg = "your wow is mediocre";
+        }
+        // else {
+        //   wowMsg = "your wow is extraordinary";
+        // }
+
+
+        $("#wowOutput").text(wowMsg + "(" + wowCount + ")");
+      
       }
-    }
-    );
+      });
 
     $("#dogeDiv").draggable();
 
